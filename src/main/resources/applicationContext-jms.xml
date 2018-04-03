@@ -18,18 +18,18 @@
     <bean id="activeMQConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="failover:(tcp://debian1.org:61616,tcp://debian2.org:61616,tcp://debian3.org:61616)?randomize=true"/>
     </bean>
-    <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+    <!-- <bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
         <property name="connectionFactory" ref="activeMQConnectionFactory"/>
         <property name="maxConnections" value="50"/>
         <property name="maximumActiveSessionPerConnection" value="50"/>
         <property name="idleTimeout" value="60000"/>
-    </bean>
-    <bean id="cachingConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+    </bean> -->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
         <property name="targetConnectionFactory" ref="activeMQConnectionFactory"/>
         <property name="sessionCacheSize" value="50"/>
     </bean>
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-        <property name="connectionFactory" ref="pooledConnectionFactory"/>
+        <property name="connectionFactory" ref="connectionFactory"/>
     </bean>
 
     <!-- queue -->
