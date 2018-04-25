@@ -18,7 +18,8 @@ public class MqMessageListener implements MessageListener {
         ObjectMessage objMsg = (ObjectMessage) msg;
         try {
             String ip = (String) objMsg.getObject();
-            logger.info("receive msg = " + ip);
+            long tid = Thread.currentThread().getId();
+            logger.info(tid + " ==== receive msg = " + ip);
         } catch (JMSException e) {
             logger.error("获取消息内容时出错", e);
         } catch (Exception e) {
