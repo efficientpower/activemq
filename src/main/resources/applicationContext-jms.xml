@@ -31,6 +31,9 @@
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="cacheConnectionFactory"/>
     </bean>
+    <bean id="transactionManager" class="org.springframework.jms.connection.JmsTransactionManager">
+        <property name="connectionFactory" ref="connectionFactory"/>
+    </bean> 
 
     <!-- queue -->
     <bean id="mqContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
