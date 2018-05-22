@@ -10,7 +10,7 @@
     </appender>
     <!-- 默认日志 -->
     <appender name="DailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
-        <param name="threshold" value="info" />
+        <param name="threshold" value="debug" />
         <param name="file" value="/home/wangjihui/data/logs/activemq/activemq.log" />
         <param name="append" value="true" />
         <param name="datePattern" value="'.'yyyy-MM-dd" />
@@ -19,7 +19,7 @@
         </layout>
     </appender>
     <root>
-        <level value="info" />
+        <level value="debug" />
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="DailyRollingFile" />
     </root>
