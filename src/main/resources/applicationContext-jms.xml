@@ -16,14 +16,16 @@
     default-autowire="no" default-lazy-init="false">
     <!-- JMS 公共 -->
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="failover:(tcp://127.0.0.1:61610,tcp://debian2.org:61616,tcp://debian3.org:61616)?randomize=true"/>
+        <property name="brokerURL" value="failover:(tcp://debian1.org:61616,tcp://debian2.org:61616,tcp://debian3.org:61616)?randomize=true"/>
     </bean>
-    <!-- <bean id="poolConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+    <!-- 
+    <bean id="poolConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
         <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="maxConnections" value="50"/>
-        <property name="maximumActiveSessionPerConnection" value="50"/>
+        <property name="maxConnections" value="10"/>
+        <property name="maximumActiveSessionPerConnection" value="5"/>
         <property name="idleTimeout" value="60000"/>
-    </bean> -->
+    </bean>
+    -->
     <bean id="cacheConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
         <property name="targetConnectionFactory" ref="connectionFactory"/>
         <property name="sessionCacheSize" value="1024"/>
