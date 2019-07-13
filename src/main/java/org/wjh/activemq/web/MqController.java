@@ -16,7 +16,7 @@ public class MqController {
 
     @ResponseBody
     @RequestMapping("/mq/send.do")
-    public Object sen() {
+    public Object send() {
         String uuid = UUID.randomUUID().toString();
         mqSender.send(uuid);
         return uuid;
